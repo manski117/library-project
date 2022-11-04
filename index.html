@@ -11,7 +11,7 @@
 <body id="main-content" class="flexbox main-flexbox l0">
     <div id="form-flexbox" class="flexbox form-container l1">
         <header id="sidebar-header" class="l2">Form Box</header>
-        <form id="book-form" action="example.com/path" method="post" class="l2">
+        <form id="book-form" onsubmit="testRec()" class="l2">
             <label for="title-input">Book Title</label>
             <input type="text" id="title-input"><br>
             <label for="author-input">Author</label>
@@ -22,6 +22,7 @@
             <label for="read-input">Have you read this book?</label><br>
             <input type="submit" class="submit-buton btn" form="book-form" value="Submit Book">
         </form>
+
         <div id="footer" class="credit-flexbox flexbox l2">
             <h3 class="footer-text l3">Fake web app project for learning purposes only</h3>
             <h3 class="footer-text l3">by <a href="https://github.com/manski117">@manski117</a></h3>
@@ -54,6 +55,9 @@
                 
             
         </table>
+        <div id="readout-container" class="l2">
+            <p id="readout"></p>
+        </div>
     </div>
     
 </body>

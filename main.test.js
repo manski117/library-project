@@ -3,7 +3,7 @@ const {Book, test2} = require("./main");
 test("Does the Book constructor create a book object?",()=>{
     let mistborn = new Book("Mistborn", "Brandon Sanderson", 440, true);
     expect(mistborn instanceof Book).toBe(true);
-    expect(mistborn.author).toBe("Brandon Sanderson");
+    
 
 });
 
