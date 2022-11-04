@@ -1,7 +1,9 @@
-const {test1, test2} = require("./main");
+const {Book, test2} = require("./main");
 
-test("does test1 add goofy?",()=>{
-    expect(test1("donald")).toBe('donald and goofy');
+test("Does the Book constructor create a book object?",()=>{
+    let mistborn = new Book("Mistborn", "Brandon Sanderson", 440, true);
+    expect(mistborn instanceof Book).toBe(true);
+    expect(mistborn.author).toBe("Brandon Sanderson");
 
 });
 

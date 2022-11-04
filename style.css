@@ -1,3 +1,115 @@
-h2{
-    color: purple;
-}
+#main-content{
+    min-height: 100vh;
+    display: flex;
+  }
+  
+  
+  #form-flexbox{
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    padding: 40px;
+    max-height: 100%;
+    
+  }
+  
+  #book-form{
+    height: 50%;
+    display: block;
+    
+  }
+  #footer{
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 40px;
+  }
+  
+  #library-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 40px;
+    flex: 1;
+    width: calc(100% - 350px);
+    box-sizing: border-box;
+  }
+  
+  
+  
+  
+  
+  .banner{
+    width: 40%;
+    height: 200px;
+    background-image: url("https://live.staticflickr.com/2314/2854849909_4e5dcadff6_k.jpg");
+    
+    background-size: 222% 222%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    
+  }
+  
+  .banner-text{
+    color: white;
+  }
+  
+  #title-banner{
+    font-size: 42px;
+    font-weight: 800;
+  }
+  #subtitle-banner{
+    font-size: 30px;
+    font-weight: 400;
+  }
+  
+  
+  /*Table Styles*/
+  table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200,200,200);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+  
+  td, th {
+    border: 1px solid rgb(190,190,190);
+    padding: 10px 20px;
+  }
+  
+  th {
+    background-color: rgb(235,235,235);
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  tr:nth-child(even) td {
+    background-color: rgb(250,250,250);
+  }
+  
+  tr:nth-child(odd) td {
+    background-color: rgb(245,245,245);
+  }
+  
+  
+  
+  
+  /* Layout construction temporary stuff */
+  
+  .l0{
+    border: solid 3px black;
+  }
+  
+  .l1{
+    border: solid 2px red;
+  }
+  
+  .l2{
+    border: solid 1px orange;
+  }

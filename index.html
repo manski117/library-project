@@ -8,8 +8,53 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
-    <h2>rar</h2>
+<body id="main-content" class="flexbox main-flexbox l0">
+    <div id="form-flexbox" class="flexbox form-container l1">
+        <header id="sidebar-header" class="l2">Form Box</header>
+        <form id="book-form" action="example.com/path" method="post" class="l2">
+            <label for="title-input">Book Title</label>
+            <input type="text" id="title-input"><br>
+            <label for="author-input">Author</label>
+            <input type="text" id="author-input"><br>
+            <label for="pages-input">Number of Pages</label>
+            <input type="text" id="pages-input"><br>
+            <input type="checkbox" id="read-input">
+            <label for="read-input">Have you read this book?</label><br>
+            <input type="submit" class="submit-buton btn" form="book-form" value="Submit Book">
+        </form>
+        <div id="footer" class="credit-flexbox flexbox l2">
+            <h3 class="footer-text l3">Fake web app project for learning purposes only</h3>
+            <h3 class="footer-text l3">by <a href="https://github.com/manski117">@manski117</a></h3>
+        </div>
+    </div>
+    <div id="library-container" class="l1">library will go here
+        <div class="l2 banner">
+          <span id="title-banner" class="banner-text l3">Library</span>
+          <span id="subtitle-banner"class="banner-text l3">Library</span>
+
+      </div>
+        <table class="l2">
+            <caption>table will go here</caption>
+            <tr>
+                <td>&nbsp;</td>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <th></th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                
+            
+        </table>
+    </div>
     
 </body>
 <script src="main.js"></script>
