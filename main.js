@@ -57,6 +57,49 @@ function displayBooksOnPage() {
 
 
 
+function clearForm(){
+    //clears form
+    document.getElementById('book-form').reset();
+}
+
+//the submit-button calls a function that gets the form data when it is clicked.
+const submitButton = document.querySelector("#submit-button");
+
+submitButton.addEventListener('click', getFormData);
+submitButton.addEventListener('click', function(event){
+  event.preventDefault();
+});
+
+//get form data from page so that js can use it:
+function getFormData(){
+    //.value grabs whatever data is actually IN the form box that the user has typed. 
+    let fTitle=document.getElementById("title-input").value;
+    let fAuthor=document.getElementById("author-input").value;
+    let fPages=document.getElementById("pages-input").value;
+    let numPages = parseInt(fPages);
+
+   
+    let fRead;
+    if (document.getElementById("read-input").checked){
+        fRead = true;
+    } else if (!document.getElementById("read-input").checked){
+        fRead = false;
+    } else {
+        fRead = "error";
+    }
+
+    //then use this data to create an object and add it to the library array
+    addBookToLibrary(fTitle, fAuthor, numPages, fRead);
+
+    //clear the form upon submission
+    document.getElementById('book-form').reset();
+
+    //test logs
+    console.log(myLibrary);
+}
+
+
+
 ///test stuff
 
 
@@ -76,4 +119,4 @@ function test2(num){
 }
 
 //no code beyond this line
-module.exports = {Book, test2};
+module.exports = {Book, test2};  
