@@ -6,17 +6,17 @@ function Book(title, author, pages, read){
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function(){
-        //allows for a different message to be given by the info method depending on the 'read' boolean
-        if (read === true){
-            return `${title} by ${author}, ${pages} pages, has been read`;
-        } else if (read === false){
-            return `${title} by ${author}, ${pages} pages, not read`;
-        } else{
-            return "ERROR";
-        }
-    }
 
+}
+
+Book.prototype.info = function(){
+    if (this.read === true){
+        return `${this.title} by ${this.author}, ${this.pages} pages, has been read`;
+    } else if (this.read === false){
+        return `${this.title} by ${this.author}, ${this.pages} pages, not read`;
+    } else{
+        return "ERROR";
+    }
 }
 
 
@@ -97,6 +97,7 @@ function getFormData(){
     //update table
     clearTable();
     document.getElementById('table-container').appendChild(buildTable(myLibrary));
+    
 
     //test logs
     console.log(myLibrary);
@@ -148,27 +149,6 @@ function buildTable(data) {
     });
     return node;
 }
-
-//build from an array of objects
-var MOUNTAINS = [
-{no: 0, name: "Kilimanjaro", height: 5895, country: "Tanzania"},
-{no: 1, name: "Everest", height: 8848, country: "Nepal"},
-{no: 2, name: "Mount Fuji", height: 3776, country: "Japan"},
-{no: 3, name: "Mont Blanc", height: 4808, country: "Italy/France"},
-{no: 4, name: "Vaalserberg", height: 323, country: "Netherlands"},
-{no: 5, name: "Denali", height: 6168, country: "United States"},
-{no: 6, name: "Popocatepetl", height: 5465, country: "Mexico"}
-];
-
-var BOOKS = [
-    {name: "Dr. Suess", author: "Tanzania", pages: 123, read: true, button:"click me"},
-    {name: "Dr. Suess", author: "Nepal", pages: 43, read: false, button:"click me"},
-    {name: "Dr. Suess", author: "Japan", pages: 2343, read: true, button:"click me"},
-];
-
-//put the table right where we want it in the page.
-document.getElementById('table-container').appendChild(buildTable(BOOKS));
-
 function clearTable(){
     //select the table that had been added to the div container via the dom, so we remove the content and not the div itself. 
     const toDel = document.querySelector("#book-table");
@@ -177,6 +157,12 @@ function clearTable(){
 }
 
 
+//placeholder table to initialize the table when the user first loads the page.
+var initialTable = [
+    {name: "", author: "", pages: "", read: "", button:""},
+];
+
+document.getElementById('table-container').appendChild(buildTable(initialTable));
 
 
 
@@ -184,17 +170,3 @@ function clearTable(){
 
 
 
-function test1(text){
-    text += " and goofy";
-    return text;
-}
-
-function test2(num){
-    let myNum = num;
-    myNum ++;
-    return myNum;
-
-}
-
-//no code beyond this line
-module.exports = {Book, test2};  
