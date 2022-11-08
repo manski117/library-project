@@ -101,6 +101,73 @@ function getFormData(){
 
 
 ///test stuff
+function buildTable(data) {
+    var node = document.createElement("table");
+  
+    var tr = document.createElement("tr");
+    //fill the headers var with an array of the keys of the object in the 0 index (first place) of the array
+    var headers = Object.keys(data[0]);
+    //loop through each key in the array of key names
+    for (var i=0; i<headers.length; ++i) {
+        var header = headers[i];
+        //create table headers for the key names
+        //create a new table header called th
+        var th = document.createElement("th");
+        //use createTextNode to set its text to the current key via "header"
+        th.appendChild(document.createTextNode(header));
+        //add that th to the table row (tr) you are looping through
+        tr.appendChild(th);
+    }
+
+
+    //actually finally add this row to the table
+    node.appendChild(tr);
+    //now loop through each object in the array in "data"
+    data.forEach(function (rowdata) {
+        //for each object, make a new table row "tr" for it.
+       tr = document.createElement("tr");
+       for (var i=0; i<headers.length; ++i) {
+        //loops through each key and uses that key to get the value
+            var header = headers[i];
+            var td = document.createElement("td");
+            //adds the value from the key:value pair to the td via createTextNode
+            td.appendChild(document.createTextNode(rowdata[header]));
+            //right-align the data if it is an int
+            if (typeof rowdata[header] == "number") {
+                td.style.textAlign = "right";
+                td.style.color = "#E50000";
+            }
+            tr.appendChild(td);
+        }
+        node.appendChild(tr);
+    });
+    return node;
+}
+
+//build from an array of objects
+var MOUNTAINS = [
+{no: 0, name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+{no: 1, name: "Everest", height: 8848, country: "Nepal"},
+{no: 2, name: "Mount Fuji", height: 3776, country: "Japan"},
+{no: 3, name: "Mont Blanc", height: 4808, country: "Italy/France"},
+{no: 4, name: "Vaalserberg", height: 323, country: "Netherlands"},
+{no: 5, name: "Denali", height: 6168, country: "United States"},
+{no: 6, name: "Popocatepetl", height: 5465, country: "Mexico"}
+];
+
+var BOOKS = [
+    {name: "Dr. Suess", author: "Tanzania", pages: 123, read: true, button:"click me"},
+    {name: "Dr. Suess", author: "Nepal", pages: 43, read: false, button:"click me"},
+    {name: "Dr. Suess", author: "Japan", pages: 2343, read: true, button:"click me"},
+];
+
+//put the table right where we want it in the page.
+document.getElementById('table-container').appendChild(buildTable(BOOKS));
+
+
+
+
+
 
 
 

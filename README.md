@@ -14,6 +14,8 @@ Make a library web app to practice using objects, forms, tables, and the DOM
 -make form and table look pretty
 -add form feedback and validation
 
+-can we change the behavior of form inputs so that hitting "enter" does not submit the form prematurely? 
+
 
 
 **image attributions: **
