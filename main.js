@@ -10,6 +10,8 @@ function Book(title, author, pages, read){
 }
 
 Book.prototype.info = function(){
+    //this will be a method you can call on the book objects, but because they are in the prototype and not in the obj itself, they will not populate in the table.
+
     if (this.read === true){
         return `${this.title} by ${this.author}, ${this.pages} pages, has been read`;
     } else if (this.read === false){
@@ -129,9 +131,11 @@ function buildTable(data) {
     //actually finally add this row to the table
     node.appendChild(tr);
     //now loop through each object in the array in "data"
+    let domID = 0;
     data.forEach(function (rowdata) {
         //for each object, make a new table row "tr" for it.
-       tr = document.createElement("tr");
+        
+        tr = document.createElement("tr");
        for (var i=0; i<headers.length; ++i) {
         //loops through each key and uses that key to get the value
             var header = headers[i];
@@ -145,10 +149,45 @@ function buildTable(data) {
             }
             tr.appendChild(td);
         }
+        
+        //append a button at the end of the tr after loop
+        //make this button associates with that dom object
+        
+        let deleteButton = document.createElement("button");
+        deleteButton.innerText = "Remove";
+        deleteButton.setAttribute('id', `btn-${domID}`); //add id = the domID so we can tie it for deletion.
+        deleteButton.setAttribute('class', 'delete-button');
+        deleteButton.addEventListener("click", function() {
+            deleteBook(this.id);
+          });
+
+        tr.appendChild(deleteButton);
+
+
         node.appendChild(tr);
+        ++domID;
     });
     return node;
 }
+
+function deleteBook(buttonID){
+    //get last letter of string passed
+    let lastCharID = buttonID.slice(-1);
+    //turn that into an integer
+    let intID = parseInt(lastCharID);
+    console.log(intID)
+
+    //delete that index from the obj array
+    myLibrary.splice(intID, 1);
+    
+    //clear and rebuild the table. 
+    clearTable();
+    document.getElementById('table-container').appendChild(buildTable(myLibrary));
+
+}
+
+
+//delete 1 array item at index x   .splice(x, 1);
 function clearTable(){
     //select the table that had been added to the div container via the dom, so we remove the content and not the div itself. 
     const toDel = document.querySelector("#book-table");

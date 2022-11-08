@@ -12,7 +12,7 @@ Make a library web app to practice using objects, forms, tables, and the DOM
     -DONE make buildTable() construct table with the growing data object
     -DONE refresh table whenever submit button is pressed.
 
--add delete button to books (means tying objects in array to dom) (remember to refresh table)
+    -DONE add delete button to books (means tying objects in array to dom) (remember to refresh table)
 -add toggle read button to each book display (remember to refresh table)
 
 -make form and table look pretty
