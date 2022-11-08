@@ -94,6 +94,10 @@ function getFormData(){
     //clear the form upon submission
     document.getElementById('book-form').reset();
 
+    //update table
+    clearTable();
+    document.getElementById('table-container').appendChild(buildTable(myLibrary));
+
     //test logs
     console.log(myLibrary);
 }
@@ -103,6 +107,7 @@ function getFormData(){
 ///test stuff
 function buildTable(data) {
     var node = document.createElement("table");
+    node.setAttribute('id', 'book-table');
   
     var tr = document.createElement("tr");
     //fill the headers var with an array of the keys of the object in the 0 index (first place) of the array
@@ -164,6 +169,12 @@ var BOOKS = [
 //put the table right where we want it in the page.
 document.getElementById('table-container').appendChild(buildTable(BOOKS));
 
+function clearTable(){
+    //select the table that had been added to the div container via the dom, so we remove the content and not the div itself. 
+    const toDel = document.querySelector("#book-table");
+    toDel.remove();
+    
+}
 
 
 

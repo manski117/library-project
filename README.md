@@ -3,13 +3,17 @@ Make a library web app to practice using objects, forms, tables, and the DOM
 
 
 **TODO List**
--make sure form actually goes to javascript and not try to go to a server by default. 
--write function that takes user input and stores itas a book object in the main array. 
--write function that loops over the library array and displays each book on the page
--tie this function to an event listener to automatically run/update when the submit or delete button is pressed.
--manipulate the table and add table items to it via the dom
--add delete button to books (means tying objects in array to dom)
--add toggle read button to each book display
+    -DONE make sure form actually goes to javascript and not try to go to a server by default. 
+    -DONE write function that takes user input and stores itas a book object in the main array. 
+    -DONE write function that loops over the library array and displays each book on the page
+    -DONE tie this function to an event listener to automatically run/update when the submit or delete button is pressed.
+    -DONE manipulate the table and add table items to it via the dom
+
+    -DONE make buildTable() construct table with the growing data object
+    -DONE refresh table whenever submit button is pressed.
+
+-add delete button to books (means tying objects in array to dom) (remember to refresh table)
+-add toggle read button to each book display (remember to refresh table)
 
 -make form and table look pretty
 -add form feedback and validation
