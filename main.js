@@ -1,6 +1,8 @@
 let myLibrary = [];
 
 
+
+
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
@@ -66,11 +68,37 @@ function clearForm(){
 
 //the submit-button calls a function that gets the form data when it is clicked.
 const submitButton = document.querySelector("#submit-button");
-
 submitButton.addEventListener('click', validateUserInput);
+//the submitButton can tell if it is being focused on
+let submitIsFocused = false;
+submitButton.addEventListener('focus', function(event){
+    submitIsFocused = true;
+    console.log(submitIsFocused)
+})
+submitButton.addEventListener('focusout', function(event){
+    submitIsFocused = false;
+    console.log(submitIsFocused);
+})
+
+//override default behavior of submitButton to send data to server
+//this enables your data to be free to be sent to the javascript
 submitButton.addEventListener('click', function(event){
   event.preventDefault();
 });
+
+
+//ensure that hitting enter does not submit form prematurely
+document.getElementById("book-form").onkeypress = function(e) {
+    var key = e.charCode || e.keyCode || 0;     
+    if (key == 13) {
+        e.preventDefault();
+    }
+    //if user is tabbing through the form, hitting enter will still allow keyboard only users to submit the form, assuming all feilds are filled out and they focus on the submit button.
+    if (key == 13 && submitIsFocused === true) {
+        e.preventDefault();
+        validateUserInput();
+    }
+} 
 
 function validateUserInput(){
     let form = document.querySelector('#book-form');
@@ -103,12 +131,12 @@ function validateUserInput(){
     //make sure all three of them are valid before constructing the actual object
     if(titleInput.value !=='' && authorInput.value !== '' && pagesInput.value !== '' && pagesInput.value > 0 ){
         formError.style.display = "none";
-        alert('form was VALID!')
+        
         getFormData();
 
     } else{
         formError.style.display = "block";
-        alert('form was not valid')
+        
         return
 
     }
@@ -169,7 +197,7 @@ function buildTable(data) {
         tr.appendChild(th);
     }
     let thRemoveHeader = document.createElement("th");
-    thRemoveHeader.appendChild(document.createTextNode("Remove Book?"));
+    thRemoveHeader.appendChild(document.createTextNode("remove book?"));
     tr.appendChild(thRemoveHeader);
 
     //actually finally add this row to the table
@@ -224,7 +252,7 @@ function buildTable(data) {
             //right-align the data and make it red if it is an int
             if (typeof rowdata[header] == "number") {
                 td.style.textAlign = "right";
-                td.style.color = "#E50000";
+                
             }
             //write an if-statement to give the td a toggle function if read or unread.
             
@@ -313,7 +341,7 @@ function clearTable(){
 
 //placeholder table to initialize the table when the user first loads the page.
 var initialTable = [
-    {name: "", author: "", pages: "", read: "", button:""},
+    {name: "", author: "", pages: "", read: "",},
 ];
 
 document.getElementById('table-container').appendChild(buildTable(initialTable));

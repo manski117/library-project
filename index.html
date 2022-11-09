@@ -18,28 +18,28 @@
 </head>
 <body id="main-content" class="flexbox main-flexbox l0">
     <div id="form-flexbox" class="flexbox form-container l1">
-        <header id="sidebar-header" class="l2">Form Box</header>
+        <header id="sidebar-header" class="l2">Add Books Here</header>
         <form id="book-form" onsubmit="testRec()" class="l2">
             <div class="input-wrapper">
               <label for="title-input">Book Title</label>
-              <input type="text" id="title-input" title="Type your book title here." placeholder="What is the name of the book?" minlength="1" maxlength="50" required>
+              <input class="input-box" type="text" id="title-input" title="Type your book title here." placeholder="What is the name of the book?" minlength="1" maxlength="50" required>
               <div class="validation-block">
-                <p class="validation-text title-val" style="display: none;">Please fill out this feild</p>
+                <p class="validation-text title-val" style="display: none;">Title cannot be blank</p>
               </div>
             </div>
             <div class="input-wrapper">
               <label for="author-input">Author</label>
-              <input type="text" id="author-input" title="Type the author here." placeholder="Who wrote the book?" minlength="1" maxlength="50" required>
+              <input class="input-box" type="text" id="author-input" title="Type the author here." placeholder="Who wrote the book?" minlength="1" maxlength="50" required>
               <div class="validation-block">
-                <p class="validation-text author-val" style="display: none;">Please fill out this feild</p>
+                <p class="validation-text author-val" style="display: none;">Author cannot be blank</p>
               </div>
             </div>
             <div class="input-wrapper">
               <label for="pages-input">Number of Pages</label>
-              <input type="text" id="pages-input" title="Type only numerals" placeholder="How many pages is it?" minlength="1" maxlength="9" pattern="[0-9]" required>
+              <input class="input-box" type="text" id="pages-input" title="Type only numerals" placeholder="How many pages is it?" minlength="1" maxlength="9" pattern="[0-9]" required>
               <div class="validation-block">
-                <p class="validation-text pages-val" style="display: none;">Please fill out this feild</p>
-              </div>
+                <p class="validation-text pages-val" style="display: none;">Please type only a number.</p>
+              </div><br>
             </div>
             <div class="input-wrapper">
               <input class="inline" type="checkbox" id="read-input">
@@ -59,10 +59,10 @@
             <h3 class="footer-text l3">by <a href="https://github.com/manski117">@manski117</a></h3>
         </div>
     </div>
-    <div id="library-container" class="l1">library will go here
+    <div id="library-container" class="l1">
         <div class="l2 banner">
-          <span id="title-banner" class="banner-text l3">Library</span>
-          <span id="subtitle-banner"class="banner-text l3">Library</span>
+          <span id="title-banner" class="banner-text l3">Library App</span>
+          <span id="subtitle-banner"class="banner-text l3">Organize your book list below</span>
 
         </div>
         <div id="table-container" class="l2">
