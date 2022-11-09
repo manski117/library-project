@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library App</title>
+    <!--This link is for Google icons -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family-Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--This link to a cloudfare stylesheet works with a few font awesome icons, but not many.-->
+<!--You have to register to get your own kit code-->
+  <script src="https://kit.fontawesome.com/609e4a9986.js" crossorigin="anonymous"></script>
+<!--The toggle feature doesn't actually work without this last link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -12,15 +20,38 @@
     <div id="form-flexbox" class="flexbox form-container l1">
         <header id="sidebar-header" class="l2">Form Box</header>
         <form id="book-form" onsubmit="testRec()" class="l2">
-            <label for="title-input">Book Title</label>
-            <input type="text" id="title-input"><br>
-            <label for="author-input">Author</label>
-            <input type="text" id="author-input"><br>
-            <label for="pages-input">Number of Pages</label>
-            <input type="text" id="pages-input"><br>
-            <input type="checkbox" id="read-input">
-            <label for="read-input">Have you read this book?</label><br>
-            <input type="submit" id="submit-button" form="book-form" value="Submit Book">
+            <div class="input-wrapper">
+              <label for="title-input">Book Title</label>
+              <input type="text" id="title-input" title="Type your book title here." placeholder="What is the name of the book?" minlength="1" maxlength="50" required>
+              <div class="validation-block">
+                <p class="validation-text title-val" style="display: none;">Please fill out this feild</p>
+              </div>
+            </div>
+            <div class="input-wrapper">
+              <label for="author-input">Author</label>
+              <input type="text" id="author-input" title="Type the author here." placeholder="Who wrote the book?" minlength="1" maxlength="50" required>
+              <div class="validation-block">
+                <p class="validation-text author-val" style="display: none;">Please fill out this feild</p>
+              </div>
+            </div>
+            <div class="input-wrapper">
+              <label for="pages-input">Number of Pages</label>
+              <input type="text" id="pages-input" title="Type only numerals" placeholder="How many pages is it?" minlength="1" maxlength="9" pattern="[0-9]" required>
+              <div class="validation-block">
+                <p class="validation-text pages-val" style="display: none;">Please fill out this feild</p>
+              </div>
+            </div>
+            <div class="input-wrapper">
+              <input class="inline" type="checkbox" id="read-input">
+              <label class="inline" for="read-input">Have you read this book?</label>
+            </div>
+            
+            <div class="input-wrapper">
+              <input type="submit" id="submit-button" form="book-form" value="Submit Book">
+              <div class="validation-block">
+                <p class="validation-text form-val" style="display: none;">Please fill out all required feilds</p>
+              </div>
+            </div>
         </form>
 
         <div id="footer" class="credit-flexbox flexbox l2">

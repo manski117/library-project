@@ -67,10 +67,52 @@ function clearForm(){
 //the submit-button calls a function that gets the form data when it is clicked.
 const submitButton = document.querySelector("#submit-button");
 
-submitButton.addEventListener('click', getFormData);
+submitButton.addEventListener('click', validateUserInput);
 submitButton.addEventListener('click', function(event){
   event.preventDefault();
 });
+
+function validateUserInput(){
+    let form = document.querySelector('#book-form');
+    let titleInput = document.querySelector('#title-input');
+    let titleError = document.querySelector('.title-val');
+    let authorInput = document.querySelector('#author-input');
+    let authorError = document.querySelector('.author-val');
+    let pagesInput = document.querySelector('#pages-input');
+    let pagesError = document.querySelector('.pages-val');
+    let formError = document.querySelector(".form-val");
+
+    //validate individually for user feedback
+    if (titleInput.value === ''){
+        titleError.style.display = "block";
+    } else{
+        titleError.style.display = "none";
+    }
+    if (authorInput.value === ''){
+        authorError.style.display = "block";
+    } else{
+        authorError.style.display = "none";
+    }
+    //filter out non-integer or negative results as well as blank ones.
+    if (pagesInput.value === '' || pagesInput.value < 0 || pagesInput.value.match(/[^1-9]/)){
+        pagesError.style.display = "block";
+    }else{
+        pagesError.style.display = "none";
+    }
+
+    //make sure all three of them are valid before constructing the actual object
+    if(titleInput.value !=='' && authorInput.value !== '' && pagesInput.value !== '' && pagesInput.value > 0 ){
+        formError.style.display = "none";
+        alert('form was VALID!')
+        getFormData();
+
+    } else{
+        formError.style.display = "block";
+        alert('form was not valid')
+        return
+
+    }
+}
 
 //get form data from page so that js can use it:
 function getFormData(){
@@ -126,7 +168,9 @@ function buildTable(data) {
         //add that th to the table row (tr) you are looping through
         tr.appendChild(th);
     }
-
+    let thRemoveHeader = document.createElement("th");
+    thRemoveHeader.appendChild(document.createTextNode("Remove Book?"));
+    tr.appendChild(thRemoveHeader);
 
     //actually finally add this row to the table
     node.appendChild(tr);
@@ -199,8 +243,11 @@ function buildTable(data) {
         deleteButton.addEventListener("click", function() {
             deleteBook(this.id);
           });
+        
+        var tdRemove = document.createElement("td");
+        tdRemove.appendChild(deleteButton)
 
-        tr.appendChild(deleteButton);
+        tr.appendChild(tdRemove);
 
 
         node.appendChild(tr);

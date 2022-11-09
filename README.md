@@ -13,10 +13,10 @@ Make a library web app to practice using objects, forms, tables, and the DOM
     -DONE refresh table whenever submit button is pressed.
 
     -DONE add delete button to books (means tying objects in array to dom) (remember to refresh table)
--add toggle read button to each book display (remember to refresh table)
+
 
 -make form and table look pretty
--add form feedback and validation
+    -DONE add form feedback and validation
 
 -can we change the behavior of form inputs so that hitting "enter" does not submit the form prematurely? 
 
