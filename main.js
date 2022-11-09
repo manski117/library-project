@@ -140,13 +140,52 @@ function buildTable(data) {
         //loops through each key and uses that key to get the value
             var header = headers[i];
             var td = document.createElement("td");
+            //if-statement checks read status first so we don't write to td twice
+            //read is the only value that can be boolean in this object
+            if (typeof rowdata[header] == "boolean"){
+                //adds a toggle class for css styles
+                td.setAttribute('class', 'toggle');
+                
+                if (rowdata[header] === true){
+                    
+                    td.setAttribute('class', 'fa fa-thumbs-up');
+                    td.setAttribute('id', `tog-${domID}`);
+                    td.appendChild(document.createTextNode("Read"));
+                    //this function will make the corresponding change in the object array, only when clicked on.
+                    td.addEventListener("click", function() {
+                        toggleRead(this.id, true);
+                      });
+                    tr.appendChild(td);
+                    //go to next iterration so we don't add a td twice
+                    continue;
+                    
+
+                    
+                } else if(rowdata[header] === false){
+                    
+                    td.setAttribute('class', 'fa fa-thumbs-down');
+                    td.setAttribute('id', `tog-${domID}`);
+                    td.appendChild(document.createTextNode("Not Read"));
+                    //this function will make the corresponding change in the object array, only when clicked on.
+                    td.addEventListener("click", function() {
+                        toggleRead(this.id, false);
+                      });
+                    tr.appendChild(td);
+                    //go to next iterration so we don't add a td twice
+                    continue;
+                } 
+            }
             //adds the value from the key:value pair to the td via createTextNode
             td.appendChild(document.createTextNode(rowdata[header]));
-            //right-align the data if it is an int
+            //right-align the data and make it red if it is an int
             if (typeof rowdata[header] == "number") {
                 td.style.textAlign = "right";
                 td.style.color = "#E50000";
             }
+            //write an if-statement to give the td a toggle function if read or unread.
+            
+
+
             tr.appendChild(td);
         }
         
@@ -182,12 +221,41 @@ function deleteBook(buttonID){
     
     //clear and rebuild the table. 
     clearTable();
-    document.getElementById('table-container').appendChild(buildTable(myLibrary));
+    rebuildTable();
 
+}
+function toggleRead(toggleID, bool){
+    //further explained in deleteBook()
+    //this function only changes the object in the array. DOM changes made in buildTable forEach loop
+    let lastCharID = toggleID.slice(-1);
+    let intID = parseInt(lastCharID);
+    //uses the domID associated with object to grab the key:value pair and change read to unread and vice-versa
+    let bookObj = myLibrary[intID];
+    let bookObjStat = bookObj.read;
+    
+    if (bool === true){
+        bookObj.read = false;
+        let bookObjStat = bookObj.read;
+        
+        clearTable();
+        rebuildTable();
+    } else if (bool === false){
+        
+        bookObj.read = true;
+        let bookObjStat = bookObj.read;
+        
+        clearTable();
+        rebuildTable();
+    }
+    
+  }
+
+function rebuildTable(){
+    document.getElementById('table-container').appendChild(buildTable(myLibrary)); 
 }
 
 
-//delete 1 array item at index x   .splice(x, 1);
+
 function clearTable(){
     //select the table that had been added to the div container via the dom, so we remove the content and not the div itself. 
     const toDel = document.querySelector("#book-table");
