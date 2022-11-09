@@ -14,7 +14,7 @@ Make a library web app to practice using objects, forms, tables, and the DOM
 
     -DONE add delete button to books (means tying objects in array to dom) (remember to refresh table)
 
--DeBug: why can't I build another table after I remove ALL the book objects? 
+    -DONE: DeBug: why can't I build another table after I remove ALL the book objects? 
     -DONE make form and table look pretty
     -DONE add form feedback and validation
 

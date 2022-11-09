@@ -73,11 +73,11 @@ submitButton.addEventListener('click', validateUserInput);
 let submitIsFocused = false;
 submitButton.addEventListener('focus', function(event){
     submitIsFocused = true;
-    console.log(submitIsFocused)
+    
 })
 submitButton.addEventListener('focusout', function(event){
     submitIsFocused = false;
-    console.log(submitIsFocused);
+    
 })
 
 //override default behavior of submitButton to send data to server
@@ -169,10 +169,7 @@ function getFormData(){
     //update table
     clearTable();
     document.getElementById('table-container').appendChild(buildTable(myLibrary));
-    
 
-    //test logs
-    console.log(myLibrary);
 }
 
 
@@ -252,7 +249,7 @@ function buildTable(data) {
             //right-align the data and make it red if it is an int
             if (typeof rowdata[header] == "number") {
                 td.style.textAlign = "right";
-                
+                td.style.color = "#E50000";
             }
             //write an if-statement to give the td a toggle function if read or unread.
             
@@ -285,12 +282,11 @@ function buildTable(data) {
 }
 
 function deleteBook(buttonID){
-    //get last letter of string passed
+    if (myLibrary.length > 1){
+        //get last letter of string passed
     let lastCharID = buttonID.slice(-1);
     //turn that into an integer
     let intID = parseInt(lastCharID);
-    console.log(intID)
-
     //delete that index from the obj array
     myLibrary.splice(intID, 1);
     
@@ -298,7 +294,17 @@ function deleteBook(buttonID){
     clearTable();
     rebuildTable();
 
+    } else if (1 >= myLibrary.length){
+        alert("you can't delete your last book");
+        return;
+
+    } else{
+        alert('well, something did not work right')
+    }
 }
+
+
+
 function toggleRead(toggleID, bool){
     //further explained in deleteBook()
     //this function only changes the object in the array. DOM changes made in buildTable forEach loop
